@@ -32,7 +32,7 @@
     {\large Sapienza Università di Roma} \\
     {\large Dipartimento di Scienze Matematiche per l'intelligenza artificiale} \\[2cm]
     
-   \includegraphics[width=0.4\textwidth]{Stemma_sapienza.png} \\[2cm]
+   \includegraphics[width=0.4\textwidth]{../img/Stemma_sapienza.png} \\[2cm]
         
     \vfill
 \end{titlepage}
@@ -165,7 +165,8 @@ $$\boldsymbol{q_n} = \boldsymbol{q_{n-1}}\cdot P = \boldsymbol{q}\cdot P^n$$
     ma la potenza della matrice diagonale è $D^n = (a_{ij}^n)$.
 \end{remark}
 \begin{definition}
-    Sia $P$ una matrice quadrata, $p_{ij}$ gli elementi della matrice dove $p_{ij}\in[0,1]$ e $\sum_j p_{ij} = 1$, allora $P$ è detta \textit{matrice stocastica}.
+    Sia $P$ una matrice quadrata, $p_{ij}$ gli elementi della matrice dove $p_{ij}\in[0,1]$ e $\sum_j p_{ij} = 1$, 
+    allora $P$ è detta \textit{matrice stocastica}.
 \end{definition}
 \begin{example}
     Consideriamo il processo dell'esempio precedente, consideriamo solo i passi pari del processo, per analizzare i passi del processo dobbiamo calcolare
@@ -186,16 +187,16 @@ $$\boldsymbol{q_n} = \boldsymbol{q_{n-1}}\cdot P = \boldsymbol{q}\cdot P^n$$
 Una serie di risultati interessanti nascono dall'ipotesi di eseguire la $MC$ per molto tempo, e chiedersi quale sia la probabilità che 
 si finisca in un determinato stato.
 \begin{definition}
-    Uno stato $i$ è detto assorbente se $p_{ii} = 1$, ovvero una volta entrato in quello stato non potrà più uscirne. Uno stato $j$ è detto \textit{transiente}, se una volta che il processo lo abbandona, questo non vi ritornerà più.
+    Uno stato $i$ è detto assorbente se $p_{ii} = 1$, ovvero una volta entrato in quello stato non potrà più uscirne. Uno stato $j$ è detto \textit{transiente}, 
+    se una volta che il processo lo abbandona, questo non vi ritornerà più.
 \end{definition}
 
 \begin{center}
     
 
-\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+\tikzset{every picture/.style={line width=0.75pt}}  
 
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
 
 %Shape: Circle [id:dp59926774136589] 
 \draw   (99,147.5) .. controls (99,140.6) and (104.6,135) .. (111.5,135) .. controls (118.4,135) and (124,140.6) .. (124,147.5) .. controls (124,154.4) and (118.4,160) .. (111.5,160) .. controls (104.6,160) and (99,154.4) .. (99,147.5) -- cycle ;
@@ -243,10 +244,9 @@ o ci sono più stati che vengono visitati infinite volte.
 \begin{center}
 
 
-    \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+    \tikzset{every picture/.style={line width=0.75pt}}
 
     \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-    %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
     
     %Shape: Circle [id:dp59926774136589] 
     \draw   (99,147.5) .. controls (99,140.6) and (104.6,135) .. (111.5,135) .. controls (118.4,135) and (124,140.6) .. (124,147.5) .. controls (124,154.4) and (118.4,160) .. (111.5,160) .. controls (104.6,160) and (99,154.4) .. (99,147.5) -- cycle ;
@@ -294,11 +294,8 @@ scriviamo la matrice di transizone, sarà una matrice divisa a blocchi.
 \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
 
 \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
-%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
 
-%Straight Lines [id:da1566350079796739] 
 \draw    (298,108) -- (299,210) ;
-%Straight Lines [id:da5421251876883671] 
 \draw    (242,163) -- (349,164) ;
 
 % Text Node

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.30)  5 OCT 2024 10:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.30)  5 OCT 2024 10:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -417,14 +417,14 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-<Stemma_sapienza.png, id=4, 641.39626pt x 642.4pt>
-File: Stemma_sapienza.png Graphic file (type png)
-<use Stemma_sapienza.png>
-Package pdftex.def Info: Stemma_sapienza.png  used on input line 35.
+<../img/Stemma_sapienza.png, id=4, 641.39626pt x 642.4pt>
+File: ../img/Stemma_sapienza.png Graphic file (type png)
+<use ../img/Stemma_sapienza.png>
+Package pdftex.def Info: ../img/Stemma_sapienza.png  used on input line 35.
 (pdftex.def)             Requested size: 166.04774pt x 166.30449pt.
  [1
 
-{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Stemma_sapienza.png>] (./ps.toc
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <../img/Stemma_sapienza.png>] (./ps.toc
 LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -448,7 +448,7 @@ L3 programming layer <2024-02-20>
  ) 
 Here is how much of TeX's memory you used:
  13776 strings out of 474116
- 275258 string characters out of 5743682
+ 275307 string characters out of 5743682
  1941187 words of memory out of 5000000
  35894 multiletter control sequences out of 15000+600000
  565395 words of font info for 63 fonts, out of 8000000 for 9000

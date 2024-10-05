@@ -171,12 +171,12 @@ INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
-INPUT ./Stemma_sapienza.png
-INPUT ./Stemma_sapienza.png
-INPUT ./Stemma_sapienza.png
-INPUT ./Stemma_sapienza.png
+INPUT ../img/Stemma_sapienza.png
+INPUT ../img/Stemma_sapienza.png
+INPUT ../img/Stemma_sapienza.png
+INPUT ../img/Stemma_sapienza.png
 OUTPUT ps.pdf
-INPUT ./Stemma_sapienza.png
+INPUT ../img/Stemma_sapienza.png
 INPUT /usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT ./ps.toc
 INPUT ./ps.toc
