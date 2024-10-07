@@ -60,7 +60,7 @@ $$\begin{pmatrix}
     \item [-]si sceglie in modo deterministico $X_0 = i$.
     \item [-] Si utilizza un vettore di probabilità $\boldsymbol{q} = (q_1,q_2\dots q_n)$, e si sceglie in modo aleatorio lo stato iniziale.
  \end{itemize}
- Una catena di Markov quindi è formata da un'insieme di stati e da una funzione di probabilità che regola i passaggi da uno stato all'altro, ed è proprio in
+ Una catena di Markov  è formata da un'insieme di stati e da una funzione di probabilità che regola i passaggi da uno stato all'altro, ed è proprio in
  questo che differisce da una macchina a stati deterministica, potendo essere pensata come una macchina a stati stocastica.
  Oltre alla matrice di transizione una catena di Markov omogenea trova una rappresentazione anche in un grafo orientato, dove i vertici 
  sono gli stati di $\mathcal{S}$  e gli archi sono pesati con $p_{ij}$.
@@ -138,7 +138,7 @@ $$P = \begin{matrix}
     \frac{1}{2}&0&0&\frac{1}{2}\\
     0 &\frac{1}{2}&\frac{1}{2}&0
 \end{pmatrix}}$$
-$\boldsymbol{q}=(q_{00},q_{01},q_{10},q_{11})$ è il vettore di probabilità iniziale, dove $q_{00}$ indica la probabilità di iniziare da $[00]$.
+$\boldsymbol{q}=(q_1,q_2,q_3,q_4)$ è il vettore di probabilità iniziale, dove $q_1$ indica la probabilità di iniziare da $[00]$.
 Calcoliamo la probabilità che da un $[ij]$ stato di partenza ottenga tutte le altre configurazioni al primo passo:
 \begin{itemize}
     \item [-]$\mathbb{P}(X_1=[00]) = \frac{1}{2}(q_2+q_3)$
@@ -182,6 +182,18 @@ $$\boldsymbol{q_n} = \boldsymbol{q_{n-1}}\cdot P = \boldsymbol{q}\cdot P^n$$
     Allo stesso modo possiamo considerare  $PQ=R$ con $r_{ij} = \sum_k p_{ik}q_{kj}$, ottenendo comunque una matrice stocastica $R$,
     quindi il prodotto di matrici stocastiche è una matrice stocastica.
 \end{example}
+\begin{remark}   
+Chiamiamo $p^{(n)}_{ij}$ la probabilità di transizione per andare dallo stato $i$ allo stato $j$, 
+nell'esempio precedente $\mathbf{(1.4)}$ abbiamo calcolato la probabilità $i\to j$ saltando di due passi
+$$ p^{(2)}_{ij} = \sum_{k\in\mathcal{S}} p_{ik}p_{kj}.$$
+Nel caso generale abbiamo che
+$$p^{(m+n)}_{ij} = \sum_{k\in\mathcal{S}} p^{(m)}_{ik} p^{(n)}_{kj}$$
+in modo equivalente ma facendo riferimento direttamente alle matrici di transizione:
+$$P^{(m+n)} = P^{(m)}\cdot P^{(n)}.$$
+Questa equazione prende il nome di \textit{equazione di Chapman-Kolmogorov}, ricordiamo però che questa è solo una 
+versione semplificata delle equazioni perchè stiamo lavorando su $MC$ omogenee.
+\end{remark}
+
 \subsection{Stati assorbenti e transienti}
 Una serie di risultati interessanti nascono dall'ipotesi di eseguire la $MC$ per molto tempo, e chiedersi quale sia la probabilità che 
 si finisca in un determinato stato.
@@ -237,7 +249,6 @@ si finisca in un determinato stato.
 Ovviamente essendo una macchina stocastica non può esistere la definizione di stati su cui passeremo un numero finito di volte, se continuiamo il processo per infinito tempo. 
 Da queste semplici definizioni osserviamo, che se una $MC$ ha uno o più stati assorbenti e  continuiamo il processo per un tempo indeterminato, allora o si finisce in uno degli stati assorbenti, 
 o ci sono più stati che vengono visitati infinite volte.
-\newpage
 \begin{example}
     Consideriamo la $MC$ rappresentata dal grafo non connesso qui sotto:
 \begin{center}
@@ -285,7 +296,7 @@ o ci sono più stati che vengono visitati infinite volte.
     \end{tikzpicture}
     
 \end{center}
-formalmente questa è un'unica catena di Markov ma se ne 
+formalmente questa è un'unica catena di Markov ma, se ne 
 scriviamo la matrice di transizone, sarà una matrice divisa a blocchi. 
 \begin{center}
     
@@ -333,4 +344,77 @@ sottografo:
 \begin{theorem}[Frobenius]
     Una matrice \textit{stocastica} ha sempre un autovalore uguale ad 1.
 \end{theorem}
+\subsection{Catene di Markov periodiche}
+Consideriamo la figura qui sotto con quattro vertici , dove da ogni vertice è
+possibile muoversi solo verso quelli adiacenti con una probabilità  $p=\frac{1}{2}$. Chiamiamo inoltre $\boldsymbol{\mu^{(0)}} = (1,0,0,0)$ il vettore che indica 
+lo stato iniziale (in questo caso scegliamo arbitrariamente di partire da $v_1$).
+\begin{center}
+    
+
+
+
+    \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+    %uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+    
+    %Shape: Square [id:dp45511463957766873] 
+    \draw   (251,69) -- (379,69) -- (379,197) -- (251,197) -- cycle ;
+    
+    % Text Node
+    \draw (233,51.4) node [anchor=north west][inner sep=0.75pt]    {$v_{1}$};
+    % Text Node
+    \draw (379,49.4) node [anchor=north west][inner sep=0.75pt]    {$v_{2}$};
+    % Text Node
+    \draw (381,200.4) node [anchor=north west][inner sep=0.75pt]    {$v_{3}$};
+    % Text Node
+    \draw (234,197.4) node [anchor=north west][inner sep=0.75pt]    {$v_{4}$};
+    % Text Node
+    \draw (302,48.4) node [anchor=north west][inner sep=0.75pt]    {$1/2$};
+    % Text Node
+    \draw (192,139.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+    
+    
+    \end{tikzpicture}
+    
+
+\end{center}
+$$ P =\begin{pmatrix}
+    0 &\frac{1}{2} & 0 &\frac{1}{2}\\
+    \frac{1}{2} & 0 &\frac{1}{2} & 0\\
+    0 &\frac{1}{2} & 0 &\frac{1}{2}\\
+    \frac{1}{2} & 0 &\frac{1}{2} & 0\\
+\end{pmatrix},P^2 =\begin{pmatrix}
+    \frac{1}{2} & 0 &\frac{1}{2} & 0\\
+    0 &\frac{1}{2} & 0 &\frac{1}{2}\\
+    \frac{1}{2} & 0 &\frac{1}{2} & 0\\
+    0 &\frac{1}{2} & 0 &\frac{1}{2}\\
+\end{pmatrix}, P^3 =\begin{pmatrix}
+    0 &\frac{1}{2} & 0 &\frac{1}{2}\\
+    \frac{1}{2} & 0 &\frac{1}{2} & 0\\
+    0 &\frac{1}{2} & 0 &\frac{1}{2}\\
+    \frac{1}{2} & 0 &\frac{1}{2} & 0\\
+\end{pmatrix}$$
+Se si continuano i calcoli otterremo ciclicamente le stesse matrici, in particolare  per ogni $k\ge 1$ 
+$$P^{2k} = P^2$$
+$$P^{2k+1} = P$$
+Allo stesso modo vedremo cambiare il vettore delle probabilità $\boldsymbol{\mu^{(n)}}$, che per come è stato scelto sarà sempre uguale alla prima riga di $P^n$.
+Catene di Markov con questo tipo di comportamento vengono chiamate \textit{catene periodiche}, in questo caso il \textit{periodo} della catena è uguale a 2. 
+Una caratteristica fondamentale delle catene di questo tipo è che possiamo sempre risalire allo stato di partenza, o comunque ad un insieme di stati iniziali compatibili
+con il periodo.
+Cosa che invece non possiamo dire nel caso in cui  siano \textit{aperiodiche}, infatti le $MC$ per definizione
+non hanno memoria. 
+Nonostante il calcolo delle matrici di transizione sia agevolato dal periodo, le catene periodiche non convergono mai 
+ad una distribuzione limite: essendo periodica non si fermerà mai in un singolo stato e continuerà ad oscillare
+in modo indeterminato tra i $d$ stati  che compongono il periodo. Questa importante proprietà motiva la rimozione della 
+periodicità da una $MC$.
+\begin{remark}
+    Affinché una catena di Markov sia periodica è necessario che $p_{ii} = 0$, quindi per rendere la stessa aperiodica sarà sufficiente che 
+    $$p_{ii} = q$$
+    $$p_{ij} = p_{ij}(1-q) \qquad \text{con $q\in(0,1]$}$$
+\end{remark}
+Possiamo applicare $(1.10)$ all'esempio precedente aggiungendo ad ogni vertice la probabilità $q=1/2$, di restare in quello stesso stato , e $p' = pq$ per andare in uno dei vertici adiacenti.
+
+
+
 \end{document} 
