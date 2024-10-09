@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.30)  9 OCT 2024 13:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.30)  9 OCT 2024 19:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -379,16 +379,16 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+dsrom on input line 73.
+LaTeX Font Info:    Trying to load font information for U+dsrom on input line 74.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 )
-Overfull \hbox (3.80618pt too wide) in paragraph at lines 98--102
+Overfull \hbox (3.80618pt too wide) in paragraph at lines 99--103
 \OT1/cmr/m/n/10 La seg-natura al-ge-brica delle op-er-azioni di un'algebra ^^Re rap-p-re-sen-tata da un'isieme
  []
 
 [2]
-Overfull \hbox (2.19514pt too wide) in paragraph at lines 131--133
+Overfull \hbox (2.19514pt too wide) in paragraph at lines 132--134
 \OT1/cmr/m/n/10 sot-tostanti all'algebra, ma quest'ultima non ^^Re suf-fi-ciente a garan-tire l'uguaglianza
  []
 
