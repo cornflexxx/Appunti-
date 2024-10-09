@@ -170,6 +170,25 @@ induttiva, quindi \\$(B_{tree},root,branch)$ è un'algebra induttiva.
         contrapposizione con il terzo assioma. Segue l'esistenza di almeno un costruttore base.
     \end{proof}
     \begin{esercizio}
+        Mostrare che esiste un isomorfismo algebrico tra i naturali e \\$P =\{0,2,4,\dots\}$
+            dove, $0_P = 0$ e $\sigma_P(n) = n+2$.
+    \end{esercizio}
+    \begin{proof}[\textbf{Soluzione}] Per prima cosa verifichiamo che $(P,\varnothing_P,\sigma_P)$ sia un'algebra induttiva:
+        \begin{itemize}
+            \item [(i)] $\sigma_P$ e $\varnothing_P:\mathds{1}\to P$, sono chiaramente inisettive, infatti se $\sigma_P(n) =\sigma_P(m)$ e quindi
+                  $n+2 = m+2\implies n=m$.
+            \item [(ii)] Im $\sigma_P \cap $ Im $\varnothing_P = \varnothing$
+            \item [(iii)] Chiaramente se $S\subseteq P$ è chiuso rispetto a $\varnothing_P$ e $\sigma_P$, allora  $S$ deve essere necessariamente $P$.
+        \end{itemize}
+        Consideriamo la funzione tra le due algebre induttive che hanno segnature equivalenti:
+        $$f: \mathbb{N}\to P$$
+        $$n\overset{ f }\longmapsto 2n$$
+        Chiaramente $f$ è bigettiva ed è anche un omomofismo, infatti
+        $$f(\sigma(n)) = \sigma_P(f(n))$$
+        $$\varnothing = \varnothing_P$$
+        quindi $f$ è un isomofismo.
+    \end{proof}
+    \begin{esercizio}
         Dimostrare che ogni algebra induttiva non vuota con un
         costruttore non base è necessariamente infinita.
     \end{esercizio}
