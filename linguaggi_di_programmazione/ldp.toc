@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}Algebre e Algebre induttive}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Introduzione e definizione}{2}{}%
+\contentsline {subsection}{\numberline {1.2}Lemma di Lambek}{4}{}%
+\contentsline {subsubsection}{\numberline {1.2.1}Precisazione sulla notazione}{4}{}%
+\contentsline {subsection}{\numberline {1.3}Algebra induttiva di alberi binari}{5}{}%
+\contentsline {subsection}{\numberline {1.4}Esercizi}{5}{}%
+\contentsline {section}{\numberline {2}Linguaggi di espressioni}{8}{}%
+\contentsline {subsection}{\numberline {2.1}Introduzione}{8}{}%
+\contentsline {subsection}{\numberline {2.2}Linguaggio $\boldsymbol {Exp}$}{9}{}%
+\contentsline {subsubsection}{\numberline {2.2.1}Operatore $\boldsymbol {let}$}{9}{}%
+\contentsline {subsection}{\numberline {2.3}Semantica operazionale di $Exp$}{10}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}Semantica operazionale "\textit {\textbf {lazy}}"}{11}{}%
