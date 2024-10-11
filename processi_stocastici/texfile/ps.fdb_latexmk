@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1728422743.93371 "/Users/francesco/Università/III/Appunti/processi_stocastici/texfile/ps.tex" "ps.pdf" "ps" 1728422744.50289 0
+["pdflatex"] 1728663138.43725 "/Users/francesco/Università/III/Appunti/processi_stocastici/texfile/ps.tex" "ps.pdf" "ps" 1728663138.97085 0
   "../img/Stemma_sapienza.png" 1728116366.45362 64977 e0e395105162fd368a21818c3c4f6060 ""
-  "/Users/francesco/Università/III/Appunti/processi_stocastici/texfile/ps.tex" 1728422743.68041 28221 c13e7e16831f9cc57c54de9ef8cab888 ""
+  "/Users/francesco/Università/III/Appunti/processi_stocastici/texfile/ps.tex" 1728663137.64175 32959 ef6ef3473f5117f382c880eea11ed4b6 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1246382020 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1246382020 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -140,9 +140,9 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1711832357.31658 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1711832289 8221425 03946263b5a4377d613b8c1ed7b5163b ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "ps.aux" 1728422744.44745 504 fb3480c2798a31bcf2b5776b73d00437 "pdflatex"
-  "ps.tex" 1728422743.68041 28221 c13e7e16831f9cc57c54de9ef8cab888 ""
-  "ps.toc" 1728422744.44778 308 ef3879a90a5b3109c2c8052dd9ec893a "pdflatex"
+  "ps.aux" 1728663138.91838 784 4b4e78dc241efd153d146b1220b84ed8 "pdflatex"
+  "ps.tex" 1728663137.64175 32959 ef6ef3473f5117f382c880eea11ed4b6 ""
+  "ps.toc" 1728663138.91878 506 ba32b967ba33a970eb3d672008c99235 "pdflatex"
   (generated)
   "ps.aux"
   "ps.log"
