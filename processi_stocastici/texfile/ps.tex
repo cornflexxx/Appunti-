@@ -450,13 +450,24 @@ si ripassa su uno stesso stato. Oltre alla successione $\{U_i\}$ dobbiamo defini
 ed una per l'aggiornamento:
 \begin{itemize}
     \item[-] \textit{inizializzazione} : $\psi : I\to \mathcal{S}$, da $[0,1]$ scelgo uno stato da cui iniziare.
-          Per ogni $s\in\mathcal{S}$, la lunghezza di un intervallo in cui $\psi(x)=s$ deve essere $\boldsymbol{\mu}^{(0)}(s) =\mathbb{P}(X_0 = s) $.
-          Definiamo $\boldsymbol{\mu}^{(0)}(s)$ come la misura dell'intervallo che rappresenta lo stato $s$ al passo $0$, ovvero
+          Per ogni $s\in\mathcal{S}$, la lunghezza di un intervallo in cui $\psi(x)=s$ deve essere $\mu^{(0)}(s) =\mathbb{P}(X_0 = s) $.
+          Definiamo $\mu^{(0)}(s)$ come la misura dell'intervallo che rappresenta lo stato $s$ al passo $0$, ovvero
           $$ \mathbb{P}(X_0 = s) = \mathbb{P}(\psi(U_0)=s) = \int_0^1 \chi_{\{\psi(x)=s\}} dx$$
           dove $\chi_{\{\psi(x) = s\}}$ è la funzione caratteristica sull'insieme dei punti  $x\in [0,1]$, tali che $\psi(x) = s$
           $$\chi_{\{\psi(x) = s\}} =\left\{ \begin{array}{cl} 1 \quad \psi(x) = s\\ 0 \quad \psi(x) \neq s\end{array} \right.$$
+          Diamo ora una semplice costruzione della funzione $\psi$ costante a tratti:
+          $$\psi(x)= \begin{cases}
+
+                  s_1 \quad \text{per $x\in [0,\mu^{(0)}(s_1))$}                             \\
+                  s_2 \quad \text{per $x\in [\mu^{(0)}(s_1),\mu^{(0)}(s_1)+\mu^{(0)}(s_2))$} \\
+                  \vdots                                                                     \\
+                  s_i \quad \text{per $x \in [\sum_{j=1}^{i-1}\mu^{(0)}(s_j),\sum_{j=1}^i\mu^{(0)}(s_j))$}
+                  \vdots                                                                     \\
+                  s_k \quad \text{per $x\in[\sum_{j=1}^{k-1}\mu^{(0)}(s_j),1]$}
+              \end{cases}$$
     \item[-]\textit{update}: $\phi : [0,1]\times\mathcal{S}\to \mathcal{S} $, $\phi$ prende in input sia il numero casuale della $v.a$ $U_i$ (con $i>0$), sia  lo stato attuale.
-          La funzione definisce in quale stato il processo arriverà, sulla base dello stato da cui parte e il numero tra $0$ e $1$ appena generato.
+          La funzione definisce in quale stato il processo arriverà, sulla base dello stato da cui parte e il numero tra $0$ e $1$ appena generato. Possiamo costruire $\phi$ in modo simile
+          a quello usato con $\psi$, in questo caso però $\phi$ rappresenterà la probabilità di transizione.
 \end{itemize}
 Quindi la simulazione della catena non sarà altro che una successione di variabili aleatorie uniformi a cui applichiamo inizialmente $\psi$, successivamente aggiorniamo
 il suo stato con $\phi$:
