@@ -10,7 +10,8 @@
 \newtheorem{proposition}[theorem]{Proposizione} 
 \newtheorem{corollary}[theorem]{Corollario}  
 \newtheorem{lemma}[theorem]{Lemma}  
-
+\theoremstyle{definition}
+\newtheorem{esercizio}{Esercizio}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definizione}
 \newtheorem{example}[theorem]{Esempio}
@@ -333,12 +334,11 @@ o ci sono più stati che vengono visitati infinite volte.
     sottografo:
     $$\text{per $1\le i\le k$}\quad \mathbf{q'}=\left(\frac{q_i}{\sum_{i=0}^k q_i}\right) \qquad \text{per $k+1\le i\le n$}\quad \mathbf{q''}=\left(\frac{q_i}{\sum_{i=k+1}^n q_i}\right)$$
 \end{example}
-\subsection{Distribuzione invariante}
 Sia $p^{(n)} = \boldsymbol{q}P^n$, supponiamo che $\lim_{n\to\infty}\boldsymbol{q}P^n = \boldsymbol{\pi} $, quindi se lasciamo proseguire il processo
 per un tempo illimitato questo si stabilizza e il limite è proprio $\boldsymbol{\pi}$. Inoltre se $\boldsymbol{\pi}$ è il limite otteniamo che
 $$\lim_{n\to \infty} \boldsymbol{q}P^n = \lim_{n\to \infty} \boldsymbol{q}P^{n+1} = (\lim_{n\to \infty} \boldsymbol{q}P^n)P = \boldsymbol{\pi} P$$
 $$\boldsymbol{\pi}=\boldsymbol{\pi} P.$$
-Allora $\boldsymbol{\pi}$ è un autovettore sinistro di $P$, e viene chiamato \textbf{distribuzione invariante}. In altre parole,
+Allora $\boldsymbol{\pi}$ è un autovettore sinistro di $P$, e viene chiamato \textbf{distribuzione stazionaria}. In altre parole,
 la distribuzione $\boldsymbol{\pi}$ resta invariata sotto l'evoluzione della catena di Markov. In questo caso, $\boldsymbol{\pi}$ rappresenta una situazione stazionaria in cui, anche se il sistema evolve nel tempo,
 la distribuzione complessiva degli stati rimane costante.
 \begin{theorem}[Frobenius]
@@ -348,7 +348,7 @@ In  generale può succedere che ci siano più autovettori con $\lambda = 1$, chi
 $$ \sum_i \pi_i = 1 \text{ e }\pi_i\ge 0 \text{ per ogni $i$.}$$
 Allora possiamo costruire un'altro autovettore che rispetti le precedenti proprietà, quindi sia una distribuzione invariante, facendo una combinazione lineare \textit{convessa} di $\boldsymbol{\pi}$ e $\boldsymbol{\pi}'$:
 $$\alpha\boldsymbol{\pi} + (1-\alpha)\boldsymbol{\pi'}\qquad \text{con $\alpha \in [0,1]$.}$$
-\subsubsection{Catene di Markov periodiche}
+\subsection{Catene di Markov aperiodiche e irriducibili}
 Consideriamo la figura qui sotto con quattro vertici , dove da ogni vertice è
 possibile muoversi solo verso quelli adiacenti con una probabilità  $p=\frac{1}{2}$. Chiamiamo inoltre $\boldsymbol{\mu^{(0)}} = (1,0,0,0)$ il vettore che indica
 lo stato iniziale (in questo caso scegliamo arbitrariamente di partire da $v_1$).
@@ -405,7 +405,7 @@ $$P^{2k+1} = P$$
 Allo stesso modo vedremo cambiare il vettore delle probabilità $\boldsymbol{\mu^{(n)}}$, che per come è stato scelto sarà sempre uguale alla prima riga di $P^n$.
 Catene di Markov con questo tipo di comportamento vengono chiamate \textit{catene periodiche}, in questo caso il \textit{periodo} della catena è uguale a 2.
 \begin{definition}
-    Il $periodo$ di uno stato $s_i\in\mathcal{S}$ di una catena di Markov è $$d(s_i) = MCD(n: p_{ij}^{(n)}>0)$$
+    Il $periodo$ di uno stato $s_i\in\mathcal{S}$ di una catena di Markov è $$d(s_i) = \gcd(n: p_{ii}^{(n)}>0)$$
     lo stato $s_i$ è detto $periodico$ se $d(s_i)>1$.
 \end{definition}
 Una caratteristica fondamentale delle catene di questo tipo è che possiamo sempre risalire allo stato di partenza, o comunque ad un insieme di stati iniziali compatibili
@@ -426,7 +426,6 @@ Quindi la probabilità di rimanere nello stesso stato in cui il processo si trov
 \begin{definition}
     Una catena di Markov è detta \textit{aperiodica} se $d(s_i)\le 1$ per ogni stato $s_i\in\mathcal{S}$, ovvero se nessuno stato è periodico.
 \end{definition}
-\subsubsection{Condizioni di esistenza della distribuzione invariante}
 \begin{definition}
     Diciamo che $i$ $comunica$ con $j$ ($i\to j$) se esiste $n\in \mathbb{Z}^+$ tale che $p^{(n)}_{ij}>0$, quindi se esiste un certo numero di passi
     per andare da $i$ a $j$. Nel caso in cui volessimo dare una condizione per le catene non omogenee diremo che $i$ comunica con $j$ se $$\mathbb{P}(X_{m+n}=s_j|X_{m} =s_i)>0$$
@@ -439,7 +438,86 @@ Quindi la probabilità di rimanere nello stesso stato in cui il processo si trov
 \end{definition}
 La catena dell'esempio $\mathbf{(1.8)}$, rappresentata come un grafo non connesso, è una catena di Markov \textit{riducibile}. Ogni catena di Markov $riducibile$
 può essere rappresentata con una matrice di transizione divisa a blocchi. Lo studio di una $MC$ divisa in blocchi è ridotto allo studio delle $MC$ $irriducibili$ che la compongono.\\
-...
+\begin{theorem}
+    Supponiamo di avere una catena di Markov ($X_0,X_1,\dots$)  $aperiodica$ con spazio degli stati $\mathcal{S} = \{s_1,\dots s_k\}$ e matrice di transizione $P$. Allora esiste $N<\infty$ tale che
+    $$(P^n)_{ii}>0\quad $$
+\end{theorem}
+Per provare il seguente risultato abbiamo bisogno del seguente $lemma$ relativo alla \textit{teoria dei numeri}.
+\begin{lemma}
+    Sia $A=\{a_1,a_2,\dots\}$ con $a_i\in\mathbb{N}$ con le seguenti proprietà:
+    \begin{itemize}
+        \item [-] non è reticolare ($\gcd(a_1,a_2,\dots) = 1$)
+        \item [-] chiuso rispetto all'addizione.
+    \end{itemize}
+    Allora esiste $N<\infty$ tale che $n\in A$  per ogni  $n\ge N$.
+\end{lemma}
+\begin{proof}[\textbf{Dimostrazione} (Teorema 1.16)] Consideriamo $s_i\in\mathcal{S}$ e associato ad esso l'insieme $$A_i =\{n\ge 1|\text{ } p^{(n)}_{ii}>0\}$$
+    rappresentante la collezione di \textit{tempi di ritorno} di uno stato in se stesso. Abbiamo assunto che la $MC$ sia aperiodica, da questo segue che $A_i$ sia un
+    insieme \textit{non reticolare}. Per servirci del lemma precedente dobbiamo provare che $A_i$ sia anche chiuso rispetto alla somma, quindi che presi $a,a'\in A_i$,
+    allora $a+a'\in A_i$. Dato che $a,a' \in A_i$ abbiamo che: $$\mathbb{P}(X_a =s_i | X_0 =s_i)>0$$
+    $$\mathbb{P}(X_{a'}= s_i|X_0 = s_i) = \mathbb{P}(X_{a'+a}= s_i| X_a = s_i)>0$$
+    Dalle precedenti ricaviamo
+    \begin{align*}
+        \mathbb{P}(X_{a+a'} = s_i| X_0 = s_i) \ge \mathbb{P}(X_{a+a'}= s_i, X_a =s_i| X_0 = s_i) \\
+        =\mathbb{P}(X_{a} = s_i|X_0 = s_i) \mathbb{P}(X_{a+a'} = s_i | X_a = s_i) > 0
+    \end{align*}
+    quindi $a+a'\in A_i$. Segue che esiste $N_i$ tale che ogni $a>N_i$ appartiene ad $A_i$, in altre parole la probabilità di ritorno da $i\to i$, dopo $N_i$ passi, è sempre positiva. Segue
+    che $N = \max_{i\in |\mathcal{S}|}\{N_i\}$ è il limite di passi oltre il quale $(P^n)_{ii} > 0 $ per ogni $i$.
+\end{proof}
+Combinando \textit{aperiodicità} e \textit{irriducibilità} otteniamo il seguente risultato che ci tornerà utile nella dimostrazione del \textit{teorema di convergenza delle catene di Markov}.
+\begin{corollary}
+    Sia ($X_0,X_1\dots$) una catena di Markov $irriducibile$ e $aperiodica$ con spazio degli stati $\mathcal{S} =\{s_1,s_2\dots s_l\}$ e matrice di
+    transizione $P$. Allora esiste $M<\infty$ tale che $(P^n)_{ij}>0$ per ogni $i,j\in\{1,\dots k\}$ ed ogni $n\ge M$.
+\end{corollary}
+\begin{example}[Passeggiata su un toro discreto]
+    Siano $a$ e $b$ due interi positivi, e consideriamo la catena di Markov con spazio degli stati
+    $$\mathbb{T}^2(a,b):=\{(x,y) | x\in \{0,1\dots a-1\}, y \in \{0,1,\dots b-1\}\}$$
+    e il seguente meccanismo di transizione: se la catena è nello stato $(x,y)$ al tempo $n$, allora al tempo $n+1$ sarà nello stato $((x+1)\mod a,y)$ o $(x,(y+1) \mod b)$,
+    ciascuno con probabilità $\frac{1}{2}$. Chiaramente è una catena di Markov $irriducibile$, in quanto dati due stati $(x',y')$ e  $(x,y)$,
+    allora possiamo spostarci di una serie di passi  in modo che $x+p \equiv x' \mod a$ e $y+q \equiv y'\mod b$, in entrambi i casi con probabilità positiva pari a
+    $$\mathbb{P}(X_{p+q} = (x',y')| X_0 = (x,y)) = \left(\frac{1}{2}\right)^{p+q}$$
+    ne segue che ogni coppia di stati è comunicante, quindi la catena è $irriducibile$. Mostriamo ora che la catena è $aperiodica$ se e solo se  $\gcd(a,b) = 1$. Supponiamo
+    di trovarci in un punto generico $(z,w)$ di $\mathbb{T}^2(a,b)$, per tornare in $(z,w)$ allora possiamo scegliere di fare $a$ passi orizzontali o $b$ passi verticali, altrimenti una
+    combinazione dei due, in ogni caso sarà un numero $ka+tb$ di passi, quindi $d(z,w) = \gcd(a,b,2a,2b,2a+b,\dots) = 1 \iff  \gcd(a,b) = 1$.
+\end{example}
+\subsection{Distribuzione stazionaria}
+Anche se già incontrata in precedenza, diamo ora  una definizione formale di distribuzione stazionaria per una catena di Markov.
+\begin{definition}
+    Sia ($X_0,X_1,\dots$) una catena di Markov con spazio degli stati $\{s_1,s_2\dots s_k\}$ e matrice di transizione $P$. Il vettore
+    $\boldsymbol{\pi} = (\pi_1,\pi_2\dots\pi_k)$ è detta distribuzione stazionaria se soddisfa le seguenti condizioni:
+    \begin{itemize}
+        \item [\textit{(i)}] $\pi_i\ge 0$ per $i = 1,\dots k$ e $\sum_{i=1}^k \pi_k = 1$ e
+        \item [\textit{(ii)}]$\boldsymbol{\pi}P = \boldsymbol{\pi}$, ovvero $\sum_{i=1}^k \pi_i P_{ij} = \pi_j$ per $j =1,\dots k$.
+    \end{itemize}
+\end{definition}
+Consideriamo uno stato arbitrario di partenza $X_0= i$ e definiamo $$T_{ij} :=\min\{n\ge 1| X_n = j\},$$ come il \textit{tempo aleatorio} per andare dallo stato
+$i$ allo stato $j$, sia invece $\tau_{ij} := \mathbb{E}(T_{ij})$. Nel caso in cui $i=j$ chiameremo $T_i$  come il $tempo$ $di$ $ritorno$ e, se $s_j$ non fosse raggiungibile da $s_i$, $T_{ij} = \infty$.
+\begin{proposition}
+    Sia $(X_0,X_1,\dots)$ un catena $aperiodica$ ed $irriducibile$, allora $$\mathbb{P}(T_{ij}<\infty) =1 \text{ e } \tau_{ij}<\infty\text { per ogni $i,j$}.$$
+\end{proposition}
+\begin{proof}[\textbf{Dimostrazione}]
+    Come dimostrato in precedenza, esiste sempre un certo intero positivo $M$ tale che $p_{ij}^{(M)}>0$ per ogni $i,j$. Prendiamo la probabilità di transizione minima $\alpha = \min_{i,j} (p_{ij}^{(M)})$ in $P^{(M)}$, con la quale otteniamo
+    la seguente disuguaglianza:
+    $$\mathbb{P}(T_{ij}>M)\le \mathbb{P}(X_M \neq j)\le  1-\alpha$$
+    quindi
+    \begin{align*}
+        \mathbb{P}(T_{ij}>2M) = \mathbb{P}(T_{ij}>M)\mathbb{P}(T_{ij}>2M | T_{ij}>M) \\
+        \le\mathbb{P}(T_{ij}>M)\mathbb{P}(X_{2M}\neq j| T_{ij}>M)\le (1-\alpha)^2
+    \end{align*}
+    iterando questo processo $\ell$ volte avremo
+    $$\mathbb{P}(T_{ij}>\ell M)\le (1-\alpha)^{\ell}.$$
+    Quando $\ell$ tende ad infinito $$\mathbb{P}(T_{ij}>\infty)  = 0$$
+    passando al complemento otteniamo il primo risultato. Per il secondo punto sviluppiamo la sommatoria del
+    valore atteso:
+    \begin{align*}
+        \mathbb{E}(T_{ij}) & = \sum_{n=1}^{\infty}\mathbb{P}(T_{ij}\ge n) = \sum_{n=0}^{\infty}\mathbb{P}(T_{ij}> n)                                                                          \\
+                           & =\sum_{\ell = 0}^{\infty}\sum_{n = \ell M}^{(\ell+1)M-1}\mathbb{P}(T_{ij}>n)  \le\sum_{\ell = 0}^{\infty}\sum_{n =\ell M}^{(\ell+1)M-1}\mathbb{P}(T_{ij}>\ell M) \\
+                           & = M\sum_{\ell = 0}^{\infty} \mathbb{P}(T_{ij}>\ell M) \le M\sum^{\infty}_{\ell = 0} (1-\alpha)^{\ell} = M\frac{1}{1-(1-\alpha)} = \frac{M}{\alpha}<\infty
+    \end{align*}
+\end{proof}
+\begin{theorem}
+    Una catena $irriducibile$ e $aperiodica$ ha almeno una distribuzione stazionaria.
+\end{theorem}
 \section{Simulazione di una catena di Markov}
 Consideriamo una successione di variabili aleatorie $X_0,X_1\dots$ rappresentanti la traiettoria di una catena di Markov omogenea, con $\mathbb{P}(X_n = i| X_{n-1}= j) = p_{ij}$.
 Per simulare una catena di Markov abbiamo bisogno di una successione di variabili aleatorie
