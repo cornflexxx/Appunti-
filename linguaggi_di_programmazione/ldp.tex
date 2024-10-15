@@ -300,7 +300,7 @@ Ad esempio $$plus(\mathbf{5}(\epsilon),times(\mathbf{4}(\epsilon),\mathbf{3}(\ep
 Definiamo il linguaggio $\boldsymbol{Exp}$ costituito da espressioni di somma e $let$:
 $$ M,N ::= k|x|M+N|\text{ let $x = M$ in $N$}$$
 dove $k$ sono le costanti ed appartengono all'insieme dei valori $Val =\{1,2,...\}$; $x$ sono le variabili in $Var=\{x,y,z,\dots\}$ ed $M,N$ in termini di linguaggio in $Exp$.
-\subsubsection{Operatore $\boldsymbol{let}$}
+\subsubsection{Operatore $\boldsymbol{let}$, variabili \textit{libere e legate}}
 L'operatore $let$ derivante dalla sintassi SML, indicato con $let$ $x=M$ $in$ $N$ e con segnatura:
 $$let : Var \times Exp\times Exp\to Exp$$
 In questo modo definiamo una variabile locale $x$ inizializzata al valore dell' espressione $M$, ed un corpo $N$ che può contenre un riferimento ad $x$. Ad esempio
@@ -373,30 +373,89 @@ e $v$ è un valore in $Val$.
         \item [-] \textit{Regola del $let$}: $$\frac{E\vdash M\leadsto v \quad E(x,v)\vdash N\leadsto v'}{E\vdash \text{$let$ $x=M$ $in$ $N$}\leadsto v'}$$
               dove con $E(x,v)$ componiamo l'ambiente $E$ con l'associazione tra $x$ e $v$.
     \end{itemize}
-    \begin{remark}
-        Le premesse in una regola logica non hanno un ordine da seguire, da questo possiamo dedurre
-        che la funzione $plus$ sia commutativa. Ovviamente questo non è  vero in ogni linguaggio, ad esempio
-        \begin{verbatim}                    x + (x++) != (x++) + x (Java)\end{verbatim}
-        Per come è stata costruito il $let$, si potrebbe pensare che provochi una modifica all'ambiente,
-        e che quindi sia importante tenere conto dell'ordine con cui viene eseguito, in realtà non è così.
-        Infatti la dichiarazione  fatta nel $let$ è limitata all'espressione in $M$ o $N$ che
-        sono fatte al suo interno, di conseguenza creeremo solo variabili locali.
-    \end{remark}
-    \begin{example} La valutazione delle espressioni attraverso la semantica operazionale appena definita viene detta valutazione \textit{eager} ovvero, valuta le espressioni appena le incontra. Diamone la prova utilizzando le regole di derivazione sulla
-        seguente espressione (\textit{la valutazione parte dal basso e va verso l'alto}):
-
-        $$\cfrac{\cfrac{\cfrac{(x,1)(y,1)\vdash 2\leadsto 2 \quad (x,1)(y,1)(x,2)\vdash y\leadsto 1}{(x,1)\vdash x \leadsto 1 \quad (x,1)(y,1)\vdash\text{$let$ $x=2$ $in$ $y\leadsto 1$}}}{\varnothing \vdash 1\leadsto 1\quad (x,1)\vdash\text{$let$ $y=x$ $in$ $let$ $x=2$ $in$ $y\leadsto 1$}}}{\varnothing\vdash \text{$let$ $x=1$ $in$ $let$ $y=x$ $in$ $let$ $x=2$ $in$ $y\leadsto 1$}}$$
-
-        Con le regole definite l'espressione è valutata $1$, ma nel caso in cui la valutezione fosse stata \textit{lazy} avremmo ottenuto come risultato $2$,
-        questo perché l'espressione viene valutata solo quando dev'essere utilizzata.
-    \end{example}
-    \subsubsection{Semantica operazionale "\textit{\textbf{lazy}}"}
-    Per ottenere una valutazione $lazy$ è necessario modificare la \textit{Regola del let} e la \textit{Regola della variabile}:
-    \begin{itemize}
-        \item [-] \textit{Regola del let modificata}: $$\cfrac{E(x,M)\vdash N \leadsto v}{E\vdash \text{$let$ $x=M$ $in$ $N\leadsto v$}}$$
-              dove $E(x,M)$ indica la composizione dell'ambiente $E$ con l'associazione della variabile $x$ all'espressione non valutata $M$.
-        \item [-] \textit{Regola della variabile modificata} $$\cfrac{E\vdash M\leadsto v}{E \vdash x \leadsto v}\quad (\text{se $E(x) = M$} )$$
-    \end{itemize}
-    In questo modo dobbiamo valutare una certa espressione $M$ solo se è richiesto il suo valore
 \end{definition}
+\begin{remark}
+    Le premesse in una regola logica non hanno un ordine da seguire, da questo possiamo dedurre
+    che la funzione $plus$ sia commutativa. Ovviamente questo non è  vero in ogni linguaggio, ad esempio
+    \begin{verbatim}                    x + (x++) != (x++) + x (Java)\end{verbatim}
+    Per come è stata costruito il $let$, si potrebbe pensare che provochi una modifica all'ambiente,
+    e che quindi sia importante tenere conto dell'ordine con cui viene eseguito, in realtà non è così.
+    Infatti la dichiarazione  fatta nel $let$ è limitata all'espressione in $M$ o $N$ che
+    sono fatte al suo interno, di conseguenza creeremo solo variabili locali.
+\end{remark}
+\begin{example} La valutazione delle espressioni attraverso la semantica operazionale appena definita viene detta valutazione \textit{eager} ovvero, valuta le espressioni appena le incontra. Diamone la prova utilizzando le regole di derivazione sulla
+    seguente espressione (\textit{la valutazione parte dal basso e va verso l'alto}):
+
+    $$\cfrac{\cfrac{\cfrac{(x,1)(y,1)\vdash 2\leadsto 2 \quad (x,1)(y,1)(x,2)\vdash y\leadsto 1}{(x,1)\vdash x \leadsto 1 \quad (x,1)(y,1)\vdash\text{$let$ $x=2$ $in$ $y\leadsto 1$}}}{\varnothing \vdash 1\leadsto 1\quad (x,1)\vdash\text{$let$ $y=x$ $in$ $let$ $x=2$ $in$ $y\leadsto 1$}}}{\varnothing\vdash \text{$let$ $x=1$ $in$ $let$ $y=x$ $in$ $let$ $x=2$ $in$ $y\leadsto 1$}}$$
+
+    Con le regole definite l'espressione è valutata $1$, ma nel caso in cui la valutezione fosse stata \textit{lazy} avremmo ottenuto come risultato $2$,
+    questo perché l'espressione viene valutata solo quando dev'essere utilizzata.
+\end{example}
+\subsubsection{Semantica operazionale "\textit{\textbf{lazy}}"}
+Per ottenere una valutazione $lazy$ è necessario modificare la \textit{Regola del let} e la \textit{Regola della variabile}:
+\begin{itemize}
+    \item [-] \textit{Regola del let modificata}: $$\cfrac{E(x,M)\vdash N \leadsto v}{E\vdash \text{$let$ $x=M$ $in$ $N\leadsto v$}}$$
+          dove $E(x,M)$ indica la composizione dell'ambiente $E$ con l'associazione della variabile $x$ all'espressione non valutata $M$.
+    \item [-] \textit{Regola della variabile modificata} $$\cfrac{E\vdash M\leadsto v}{E \vdash x \leadsto v}\quad (\text{se $E(x) = M$} )$$
+\end{itemize}
+In questo modo dobbiamo valutare una certa espressione $M$ solo se è richiesto il suo valore.
+\subsubsection{Semantica \textit{lazy} con \textit{scoping statico}}
+La modifica delle regole oltre a cambiare il tipo
+di valutazione, sta cambiando anche lo $scoping$ del linguaggio. Infatti con la valutazione $eager$ lo scoping era $statico$, ma con l'introduzione delle regole $lazy$ lo scoping è diventato $dinamico$.
+Per ottenere una semantica $lazy$ $statica$ dobbiamo modificare ulteriormente le regole:
+\begin{align*}
+     & [let]_{LS} \quad\frac{E(x,M,E)\vdash N \leadsto v}{E\vdash \text{$let$ $x=M$ $in$ $N$}\leadsto v}    \\
+     & [var]_{LS} \quad \frac{E'\vdash M \leadsto v}{E\vdash x \leadsto v}\quad (\text{se $E(x) = (M,E')$})
+\end{align*}
+Quello che stiamo facendo è tenere conto dell'ambiente $E$ in cui inizialmente abbiamo l'associazione  $(x,M)$, quindi è necessario
+estendere la funzione $Env$:
+$$Env: Var\overset{fin}{\rightharpoonup} Exp \times Env \quad(I)$$
+La $(I)$ è chiamata \textit{equazione ricorsiva di domini}, la soluzione dell'equazione è ogni insieme $X$ per cui
+$$X : Var\overset{fin}{\rightharpoonup} Exp \times X$$
+in particolare possiamo avere una soluzione con \textit{ambienti alti}, ovvero una serie di ambienti infinitamente annidati; altrimenti avremo degli $ambienti$ $bassi$.
+Risulta chiaro che un ambiente $alto$ ad esempio
+$$E = \{(x,\{(x,\{(x,\{\dots\}\dots)\}$$
+non terminerà mai la valutazione di $x$ nel caso in cui ne avesse bisogno.
+Nel caso dello \textit{scoping statico} tengo conto dell'ambiente in cui ho eseguito una determinata associazione;
+se invece lo \textit{scoping} è $dinamico$ utilizzo l'ambiente attuale per eseguire la valutazione.
+\begin{remark}
+    La valutazione $lazy$ non è sempre più efficiente di quella $eager$, infatti ogni volta che avremo bisogno di un valore, se utilizziamo la $laziness$ dobbiamo ricalcolarlo per ogni occorrenza. Ad esempio
+    $$\text{$let$ $x = M$ $in$ $x+x+x+x+x$}$$
+    se $M$ è un termine complesso, la valutazione $lazy$ è estremamente inefficiente.
+\end{remark}
+\begin{example}
+    Valutiamo la seguente espressione con la semantica $lazy$ $statica$:
+    $$\cfrac{\cfrac{\cfrac{\cfrac{\cfrac{\varnothing \vdash 3 \leadsto 3}
+                    {E \vdash x \leadsto 3}\quad (E(x) = (3,\varnothing))}
+                {E'' = E'(x,5,E')\vdash y \leadsto 3}(E''(y) = (x,E))}
+                {E' = E(y,x,E)\vdash \text{$let$ $x=5$ $in$ $y$}\leadsto 3}}
+            {E = (x,3,\varnothing)\vdash \text{$let$ $y= x$ $in$ $let$ $x=5$ $in$ $y$}\leadsto 3}}
+        {\varnothing\vdash \text{$let$ $x=3$ $in$ $let$ $y= x$ $in$ $let$ $x=5$ $in$ $y$}\leadsto 3}$$
+    La valutazione sarebbe stata la stessa se avessimo utilizzato le regole della sematinca $eager$.
+\end{example}
+\begin{definition}
+    Un ambiente $eager$ $E$ si dice $equivalente$ ad un ambiente $lazy$ $statico$ $E'$, se per ogni variabile $x$,  con $E(x)=v$, esistono $M$ ed $E''$ tali che $E'(x) = (M,E'')$ e $E''\vdash M \leadsto v$.
+\end{definition}
+\begin{theorem}
+    $$E\vdash M \leadsto_E v \iff E' \vdash M \leadsto_{LS} v$$
+    ovvero le semantiche $lazy$ $statica$ e $eager$ sono equivalenti se e solo se $E,E'$ non sono ambienti $alti$.
+\end{theorem}
+\section{Linguaggio \textit{Fun}}
+Il linguaggio $Fun$ estende il linguaggio $Exp$ con la nozione di $funzione$, quindi possiamo aggiungere al precedente linguaggio le seguenti clausole:
+$$ \text{$fn$ $x$} \implies M|MN,$$
+quindi
+$$MN ::= k|x|M+N|\text{$let$ $x=M$ $in$ $N|$ $fn$ $x$ }\implies M|MN$$
+Successivamente mostreremo che le clausole definite nel linguaggio $Exp$, ad eccezione delle $variabili$ non sono necessarie in $Fun$. L'operazione $fn$ ha segnatura:
+$$fn: Var\times Fun \to Fun$$
+\begin{remark}
+    L'operazione $fn$ prende una sola variabile in input, per costruire "funzioni a più variabili" possiamo comporre più operatori $fn$
+    $$\text{$fn$ $x_1 \implies (fn$ $x_2\implies$\dots($fn$ $x_k\implies M$) }$$
+    Per comodità la notazione sopra sarà equivalente a $fn$ $x_1\dots x_k\implies M$.
+\end{remark}
+\begin{example}
+    $fn$ $xy\Rightarrow x+y$, nella scrittura completa $fn$ $x\Rightarrow fn$ $y\Rightarrow x+y$.
+    Utilizzando la clausola $fn$ $x\Rightarrow MN$ stiamo applicando $M$ ad $N$, ad esempio
+    $$\text{$(fn$ $xy\rightarrow yx)$$(fn$ $x\Rightarrow x+1)$$(fn$ $x\Rightarrow x)3$}$$
+    In questo caso a la prima funzione a partire da sinistra inverte $x$ ed $y$, applicando la funzione successore ad $y$ e ad $x$ la funzione identica, successivamente passo $3$ alla funzione successore ottenendo $4$.
+\end{example}
 \end{document}

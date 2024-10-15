@@ -7,6 +7,8 @@
 \contentsline {section}{\numberline {2}Linguaggi di espressioni}{8}{}%
 \contentsline {subsection}{\numberline {2.1}Introduzione}{8}{}%
 \contentsline {subsection}{\numberline {2.2}Linguaggio $\boldsymbol {Exp}$}{9}{}%
-\contentsline {subsubsection}{\numberline {2.2.1}Operatore $\boldsymbol {let}$}{9}{}%
+\contentsline {subsubsection}{\numberline {2.2.1}Operatore $\boldsymbol {let}$, variabili \textit {libere e legate}}{9}{}%
 \contentsline {subsection}{\numberline {2.3}Semantica operazionale di $Exp$}{10}{}%
 \contentsline {subsubsection}{\numberline {2.3.1}Semantica operazionale "\textit {\textbf {lazy}}"}{11}{}%
+\contentsline {subsubsection}{\numberline {2.3.2}Semantica \textit {lazy} con \textit {scoping statico}}{12}{}%
+\contentsline {section}{\numberline {3}Linguaggio \textit {Fun}}{13}{}%

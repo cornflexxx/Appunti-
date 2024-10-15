@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.30)  10 OCT 2024 18:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.3.30)  15 OCT 2024 12:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -402,25 +402,35 @@ Overfull \hbox (10.70674pt too wide) in paragraph at lines 289--292
 \OT1/cmr/m/n/10 Allora $(\OML/cmm/m/it/10 L; \OT1/cmr/bx/n/10 1\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 2\OML/cmm/m/it/10 ; [] ; times; plus\OT1/cmr/m/n/10 )$ ^^Re un'algebra in-dut-tiva. Quindi l'$\OML/cmm/m/it/10 eval$ \OT1/cmr/m/n/10 di $[]$
  []
 
-[8] [9] [10] [11] [12] (./ldp.aux)
+[8] [9] [10] [11]
+Overfull \hbox (0.74055pt too wide) in paragraph at lines 427--428
+[]\OT1/cmr/bx/n/10 Esempio 2.13. []\OT1/cmr/m/n/10 Va-lu-ti-amo la seguente espres-sione con la se-man-tica $\OML/cmm/m/it/10 lazy$ $statica$\OT1/cmr/m/n/10 : 
+ []
+
+[12]
+Overfull \hbox (0.65388pt too wide) in paragraph at lines 451--452
+[]\OT1/cmr/m/it/10 Osservazione \OT1/cmr/m/n/10 3.1\OT1/cmr/m/it/10 . []\OT1/cmr/m/n/10 L'operazione $\OML/cmm/m/it/10 fn$ \OT1/cmr/m/n/10 prende una sola vari-abile in in-put, per costru-
+ []
+
+[13] (./ldp.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 13253 strings out of 474116
- 266853 string characters out of 5743682
+ 13256 strings out of 474116
+ 266927 string characters out of 5743682
  1938187 words of memory out of 5000000
- 35365 multiletter control sequences out of 15000+600000
- 572328 words of font info for 92 fonts, out of 8000000 for 9000
+ 35368 multiletter control sequences out of 15000+600000
+ 572687 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,12n,93p,482b,730s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,14n,93p,478b,730s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on ldp.pdf (12 pages, 249563 bytes).
+Output written on ldp.pdf (13 pages, 258210 bytes).
 PDF statistics:
- 152 PDF objects out of 1000 (max. 8388607)
- 95 compressed objects within 1 object stream
+ 156 PDF objects out of 1000 (max. 8388607)
+ 98 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
