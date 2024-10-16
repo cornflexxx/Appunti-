@@ -475,7 +475,7 @@ Combinando \textit{aperiodicità} e \textit{irriducibilità} otteniamo il seguen
     e il seguente meccanismo di transizione: se la catena è nello stato $(x,y)$ al tempo $n$, allora al tempo $n+1$ sarà nello stato $((x+1)\mod a,y)$ o $(x,(y+1) \mod b)$,
     ciascuno con probabilità $\frac{1}{2}$. Chiaramente è una catena di Markov $irriducibile$, in quanto dati due stati $(x',y')$ e  $(x,y)$,
     allora possiamo spostarci di una serie di passi  in modo che $x+p \equiv x' \mod a$ e $y+q \equiv y'\mod b$, in entrambi i casi con probabilità positiva pari a
-    $$\mathbb{P}(X_{p+q} = (x',y')| X_0 = (x,y)) = \left(\frac{1}{2}\right)^{p+q}$$
+    $$\mathbb{P}(X_{p+q} = (x',y')| X_0 = (x,y)) = \left(\frac{1}{2}\right)^{p+q} $$
     ne segue che ogni coppia di stati è comunicante, quindi la catena è $irriducibile$. Mostriamo ora che la catena è $aperiodica$ se e solo se  $\gcd(a,b) = 1$. Supponiamo
     di trovarci in un punto generico $(z,w)$ di $\mathbb{T}^2(a,b)$, per tornare in $(z,w)$ allora possiamo scegliere di fare $a$ passi orizzontali o $b$ passi verticali, altrimenti una
     combinazione dei due, in ogni caso sarà un numero $ka+tb$ di passi, quindi $d(z,w) = \gcd(a,b,2a,2b,2a+b,\dots) = 1 \iff  \gcd(a,b) = 1$.
