@@ -12,3 +12,6 @@
 \contentsline {subsubsection}{\numberline {2.3.1}Semantica operazionale "\textit {\textbf {lazy}}"}{11}{}%
 \contentsline {subsubsection}{\numberline {2.3.2}Semantica \textit {lazy} con \textit {scoping statico}}{12}{}%
 \contentsline {section}{\numberline {3}Linguaggio \textit {Fun}}{13}{}%
+\contentsline {subsection}{\numberline {3.1}Semantica operazionale}{14}{}%
+\contentsline {subsection}{\numberline {3.2}Il lambda calcolo}{15}{}%
+\contentsline {subsubsection}{\numberline {3.2.1}I numeri di Church}{15}{}%

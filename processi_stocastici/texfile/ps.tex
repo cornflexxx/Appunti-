@@ -480,6 +480,43 @@ Combinando \textit{aperiodicità} e \textit{irriducibilità} otteniamo il seguen
     di trovarci in un punto generico $(z,w)$ di $\mathbb{T}^2(a,b)$, per tornare in $(z,w)$ allora possiamo scegliere di fare $a$ passi orizzontali o $b$ passi verticali, altrimenti una
     combinazione dei due, in ogni caso sarà un numero $ka+tb$ di passi, quindi $d(z,w) = \gcd(a,b,2a,2b,2a+b,\dots) = 1 \iff  \gcd(a,b) = 1$.
 \end{example}
+\subsection{Simulazione di una catena di Markov}
+Consideriamo una successione di variabili aleatorie $X_0,X_1\dots$ rappresentanti la traiettoria di una catena di Markov omogenea, con $\mathbb{P}(X_n = i| X_{n-1}= j) = p_{ij}$.
+Per simulare una catena di Markov abbiamo bisogno di una successione di variabili aleatorie
+$$U_0,U_1\dots\qquad  \text{$U_i$ uniformi su $[0,1]$ e sono indipendenti}$$
+quindi $\mathbb{P}(U_i\le x) = \int_0^x dx$. Lo spazio degli stati deve essere finito e periodico,
+il periodo deve essere maggiore del numero di $v.a.$ utilizzate. In questo modo si evita la ripetizione di pattern quando
+si ripassa su uno stesso stato. Oltre alla successione $\{U_i\}$ dobbiamo definire due funzioni, una per l'inizializzazione
+ed una per l'aggiornamento:
+\begin{itemize}
+    \item[-] \textit{inizializzazione} : $\psi : I\to \mathcal{S}$, da $[0,1]$ scelgo uno stato da cui iniziare.
+          Per ogni $s\in\mathcal{S}$, la lunghezza di un intervallo in cui $\psi(x)=s$ deve essere $\mu^{(0)}(s) =\mathbb{P}(X_0 = s) $.
+          Definiamo $\mu^{(0)}(s)$ come la misura dell'intervallo che rappresenta lo stato $s$ al passo $0$, ovvero
+          $$ \mathbb{P}(X_0 = s) = \mathbb{P}(\psi(U_0)=s) = \int_0^1 \chi_{\{\psi(x)=s\}} dx$$
+          dove $\chi_{\{\psi(x) = s\}}$ è la funzione caratteristica sull'insieme dei punti  $x\in [0,1]$, tali che $\psi(x) = s$
+          $$\chi_{\{\psi(x) = s\}} =\left\{ \begin{array}{cl} 1 \quad \psi(x) = s\\ 0 \quad \psi(x) \neq s\end{array} \right.$$
+          Diamo ora una semplice costruzione della funzione $\psi$ costante a tratti:
+          $$\psi(x)= \begin{cases}
+
+                  s_1 \quad \text{per $x\in [0,\mu^{(0)}(s_1))$}                             \\
+                  s_2 \quad \text{per $x\in [\mu^{(0)}(s_1),\mu^{(0)}(s_1)+\mu^{(0)}(s_2))$} \\
+                  \vdots                                                                     \\
+                  s_i \quad \text{per $x \in [\sum_{j=1}^{i-1}\mu^{(0)}(s_j),\sum_{j=1}^i\mu^{(0)}(s_j))$}
+                  \vdots                                                                     \\
+                  s_k \quad \text{per $x\in[\sum_{j=1}^{k-1}\mu^{(0)}(s_j),1]$}
+              \end{cases}$$
+    \item[-]\textit{update}: $\phi : [0,1]\times\mathcal{S}\to \mathcal{S} $, $\phi$ prende in input sia il numero casuale della $v.a$ $U_i$ (con $i>0$), sia  lo stato attuale.
+          La funzione definisce in quale stato il processo arriverà, sulla base dello stato da cui parte e il numero tra $0$ e $1$ appena generato. Possiamo costruire $\phi$ in modo simile
+          a quello usato con $\psi$, in questo caso però $\phi$ rappresenterà la probabilità di transizione.
+\end{itemize}
+Quindi la simulazione della catena non sarà altro che una successione di variabili aleatorie uniformi a cui applichiamo inizialmente $\psi$, successivamente aggiorniamo
+il suo stato con $\phi$:
+$$X_0 = \psi(U_0),\quad X_1 = \phi(U_1,s_q),\quad  \cdots X_n = \phi(U_n,s_k)$$
+\begin{remark}
+    Nel caso in cui si volesse simulare una $MC$ non omogenea  dovremmo modificare la funzione di update ad ogni passo, e quindi dovremmo avere un $\phi_i$ per ogni $i$-esimo passo, oppure  una funzione in tre variabili :
+    $$\widehat{\phi}:[0,1]\times\mathcal{S}\times \mathbb{Z}^+\to \mathcal{S}$$
+    dove l'intero indica il tempo (discreto) in cui il processo si trova.
+\end{remark}
 \subsection{Distribuzione stazionaria}
 Anche se già incontrata in precedenza, diamo ora  una definizione formale di distribuzione stazionaria per una catena di Markov.
 \begin{definition}
@@ -518,41 +555,60 @@ $i$ allo stato $j$, sia invece $\tau_{ij} := \mathbb{E}(T_{ij})$. Nel caso in cu
 \begin{theorem}
     Una catena $irriducibile$ e $aperiodica$ ha almeno una distribuzione stazionaria.
 \end{theorem}
-\section{Simulazione di una catena di Markov}
-Consideriamo una successione di variabili aleatorie $X_0,X_1\dots$ rappresentanti la traiettoria di una catena di Markov omogenea, con $\mathbb{P}(X_n = i| X_{n-1}= j) = p_{ij}$.
-Per simulare una catena di Markov abbiamo bisogno di una successione di variabili aleatorie
-$$U_0,U_1\dots\qquad  \text{$U_i$ uniformi su $[0,1]$ e sono indipendenti}$$
-quindi $\mathbb{P}(U_i\le x) = \int_0^x dx$. Lo spazio degli stati deve essere finito e periodico,
-il periodo deve essere maggiore del numero di $v.a.$ utilizzate. In questo modo si evita la ripetizione di pattern quando
-si ripassa su uno stesso stato. Oltre alla successione $\{U_i\}$ dobbiamo definire due funzioni, una per l'inizializzazione
-ed una per l'aggiornamento:
-\begin{itemize}
-    \item[-] \textit{inizializzazione} : $\psi : I\to \mathcal{S}$, da $[0,1]$ scelgo uno stato da cui iniziare.
-          Per ogni $s\in\mathcal{S}$, la lunghezza di un intervallo in cui $\psi(x)=s$ deve essere $\mu^{(0)}(s) =\mathbb{P}(X_0 = s) $.
-          Definiamo $\mu^{(0)}(s)$ come la misura dell'intervallo che rappresenta lo stato $s$ al passo $0$, ovvero
-          $$ \mathbb{P}(X_0 = s) = \mathbb{P}(\psi(U_0)=s) = \int_0^1 \chi_{\{\psi(x)=s\}} dx$$
-          dove $\chi_{\{\psi(x) = s\}}$ è la funzione caratteristica sull'insieme dei punti  $x\in [0,1]$, tali che $\psi(x) = s$
-          $$\chi_{\{\psi(x) = s\}} =\left\{ \begin{array}{cl} 1 \quad \psi(x) = s\\ 0 \quad \psi(x) \neq s\end{array} \right.$$
-          Diamo ora una semplice costruzione della funzione $\psi$ costante a tratti:
-          $$\psi(x)= \begin{cases}
-
-                  s_1 \quad \text{per $x\in [0,\mu^{(0)}(s_1))$}                             \\
-                  s_2 \quad \text{per $x\in [\mu^{(0)}(s_1),\mu^{(0)}(s_1)+\mu^{(0)}(s_2))$} \\
-                  \vdots                                                                     \\
-                  s_i \quad \text{per $x \in [\sum_{j=1}^{i-1}\mu^{(0)}(s_j),\sum_{j=1}^i\mu^{(0)}(s_j))$}
-                  \vdots                                                                     \\
-                  s_k \quad \text{per $x\in[\sum_{j=1}^{k-1}\mu^{(0)}(s_j),1]$}
-              \end{cases}$$
-    \item[-]\textit{update}: $\phi : [0,1]\times\mathcal{S}\to \mathcal{S} $, $\phi$ prende in input sia il numero casuale della $v.a$ $U_i$ (con $i>0$), sia  lo stato attuale.
-          La funzione definisce in quale stato il processo arriverà, sulla base dello stato da cui parte e il numero tra $0$ e $1$ appena generato. Possiamo costruire $\phi$ in modo simile
-          a quello usato con $\psi$, in questo caso però $\phi$ rappresenterà la probabilità di transizione.
-\end{itemize}
-Quindi la simulazione della catena non sarà altro che una successione di variabili aleatorie uniformi a cui applichiamo inizialmente $\psi$, successivamente aggiorniamo
-il suo stato con $\phi$:
-$$X_0 = \psi(U_0),\quad X_1 = \phi(U_1,s_q),\quad  \cdots X_n = \phi(U_n,s_k)$$
+\begin{proof}[\textbf{Dimostrazione}]
+    Consideriamo la catena di Markov ($X_0,X_1,\dots)$, $irriducibile$ e $aperiodica$, con stati $\mathcal{S} = \{s_1,s_2\dots s_k\}$ e matrice di transizione
+    $P$. Supponiamo che la catena inizi nello stato $s_1$, quindi $X_0 = s_1$ e definiamo
+    $$\rho_i = \sum_{n = 0}^{\infty}  \mathbb{P}(X_n = s_i \cap \, T_{11}>n)$$
+    come il numero medio di visite che faccio allo stato $i$, partendo da $s_1$ e tornandoci in un tempo maggiore di $n$. Dato che $\mathbb{E}(T_{11}) = \tau_{11}$, e $rho_i<\tau_{11}$ per ogni $i$, otteniamo
+    che $\rho_i$ è finito. Possiamo allora costruire un vettore candidato ad essere la nostra distribuzione stazionaria:
+    $$\pi =(\pi_1,\pi_2,\dots,\pi_k) =  \left(\frac{\rho_1}{\tau_{11}},\frac{\rho_2}{\tau_{11}},\dots,\frac{\rho_k}{\tau_{11}}\right)$$
+    Scelto $\pi$ come sopra, non ci resta che dimostrare le due proprietà di una distribuzione stazionaria.\\
+    Per prima cosa dimostriamo che vale $\pi_j = \sum_i^k \pi_i Pij$ per $j\neq 1$, caso che tratteremo separatamente:
+    \begin{align*}
+        \pi_j = \frac{\rho_j}{\tau_{11}} = & \frac{1}{\tau_{11}}\sum_{n = 0}^{\infty}\mathbb{P}(X_n = s_j \cap T_{11}>n)                                                                      \\
+        =                                  & \frac{1}{\tau_{11}}\sum_{n = 1}^{\infty}\mathbb{P}(X_n = s_j \cap T_{11}>n)                                                                      \\
+        =                                  & \frac{1}{\tau_{11}}\sum_{n = 1}^{\infty}\mathbb{P}(X_n = s_j \cap T_{11}>n-1)                                                                    \\
+        =                                  & \frac{1}{\tau_{11}}\sum_{n = 1}^{\infty}\sum_{i=1}^k\mathbb{P}(X_n = s_j,\, X_{n-1} = s_i,\,T_{11}>n-1)                                          \\
+        =                                  & \frac{1}{\tau_{11}}\sum_{n = 1}^{\infty}\sum_{i=1}^k\mathbb{P}( X_{n-1} = s_i,\,T_{11}>n-1)\mathbb{P}(X_n = s_j|X_{n-1} = s_i)                   \\
+        =                                  & \frac{1}{\tau_{11}}\sum_{i=1}^kP_{ij}\sum_{n = 1}^{\infty}\mathbb{P}( X_{n-1} = s_i,\,T_{11}>n-1) =  \frac{1}{\tau_{11}}\sum_{i=1}^k\rho_iP_{ij} \\
+        =                                  & \sum_{i=1}^k\pi_iP_{ij}
+    \end{align*}
+    Verifichiamo ora la condizione precedente anche per il caso in cui $j=1$, chiaramente $\rho_1 = 1$ per definizione, da questo otteniamo
+    \begin{align*}
+        \pi_1 = \frac{\rho_1}{\tau_{11}} & = \frac{1}{\tau_{11}} \mathbb{P}(T_{11}<\infty) = \frac{1}{\tau_{11}} \sum_{n = 1}^{\infty}\mathbb{P}(T_{11} = n)                                                                   \\
+                                         & =\frac{1}{\tau_{11}} \sum_{n= 1}^{\infty}\sum_{i = 1}^{k}\mathbb{P}(X_{n-1} = s_i,T_{11} = n)                                                                                       \\
+                                         & =\frac{1}{\tau_{11}} \sum_{n= 1}^{\infty}\sum_{i = 1}^{k}\mathbb{P}(X_{n-1} = s_i,T_{11} > n-1)\mathbb{P}(X_n=s_1|X_{n-1}= s_i)                                                     \\
+                                         & =\frac{1}{\tau_{11}}  \sum_{i = 1}^{k}P_{i1}\sum_{n= 1}^{\infty}\mathbb{P}(X_{n-1} = s_i,T_{11} > n-1) \quad (\text{scrivo }m = n-1)                                                \\
+                                         & = \frac{1}{\tau_{11}} \sum_{i = 1}^{k}P_{i1}\sum_{m= 0}^{\infty}\mathbb{P}(X_{m} = s_i,T_{11} > m) =\frac{1}{\tau_{11}}  \sum_{i = 1}^k \rho_i P_{i1} = \sum_{i = 1}^k \pi_i P_{i1}
+    \end{align*}
+    Ci rimane ora da verificare che $\sum_{i}\pi_i = 1$, ma questo segue dalla seguente osservazione:
+    \begin{align*}
+        \tau_{11} = \mathbb{E}(T_{11}) & = \sum_{n=0}^{\infty} \mathbb{P}(T_{11}<n)                                            \\
+                                       & =\sum_{n=0}^{\infty}\sum_{i=1}^k \mathbb{P}(X_{n} = s_i,T_{11}<n)                     \\
+                                       & = \sum_{i=1}^k\sum_{n=0}^{\infty}\mathbb{P}(X_{n} = s_i,T_{11}<n)=\sum_{i=1}^k \rho_i \\
+    \end{align*}
+    e quindi $\sum_i \pi_i = \sum_{i=1}^k\tau_{11}^{-1} \rho_i = 1$.
+\end{proof}
+Ora che sappiamo dell'esistenza della distirbuzione, possiamo studiare il comportamento asintotico di una distirbuzione $\mu^{(n)}$, con distribuzione iniziale arbitraria $\mu^{(0)}$. Per parlare di convergenza, dobbiamo
+obbligatoriamente introdurre una definizione di distanza.
+\begin{definition}
+    Se $\nu' = (\nu_1',\nu_2',\dots,\nu_k')$ e $\nu'' =(\nu_1',\nu_2',\dots,\nu_k'')$ sono distribuzioni su $\mathcal{S} = \{s_1,s_2\dots s_k\}$, definiamo la \textbf{\textit{distanza di variazione totale}} tra $\nu'$ e $\nu''$:
+    $$d_{TV}(\nu',\nu'') = \frac{1}{2}\sum_{i=1}^k|\nu_i'-\nu_i''|.$$
+    Se $\nu^{(1)},\nu^{(2)}\dots$ è una successione di distribuzioni di probabilità su $\mathcal{S}$, allora diremo che  $\nu^{(n)}$
+    converge a $\nu$ in $variazione$ $totale$ con $n\to \infty$, scrivendo $\nu^{(n)}\xrightarrow{TV}\nu$, se
+    $$\lim_{n\to\infty} d_{TV}(\nu^{(n)},\nu) = 0$$
+\end{definition}
 \begin{remark}
-    Nel caso in cui si volesse simulare una $MC$ non omogenea  dovremmo modificare la funzione di update ad ogni passo, e quindi dovremmo avere un $\phi_i$ per ogni $i$-esimo passo, oppure  una funzione in tre variabili :
-    $$\widehat{\phi}:[0,1]\times\mathcal{S}\times \mathbb{Z}^+\to \mathcal{S}$$
-    dove l'intero indica il tempo (discreto) in cui il processo si trova.
+    Il coefficiente $1\over 2$ in $d_{TV}$ serve a mantenere la distanza tra due distribuzioni, compresa nell'intervallo $[0,1]$, nel caso in cui la distanza $d_{TV}(\nu',\nu'')=0$ allora $\nu' = \nu''$. Se invece è $1$, la loro rispettiva distribuzione sarà concentrata su due
+    partizioni disgiunte di $\mathcal{S}$.
 \end{remark}
+\begin{theorem}[\textbf{Convergenza delle catene di Markov}] Sia $(X_0,X_1,\dots)$ una catena di Markov irriducibile e aperiodica, con spazioe degli stati $\mathcal{S}=\{s_1,\dots,s_k\}$,
+    matrice di transizione $P$, e una distribuzione iniziale arbitraria $\mu^{(0)}$. Per ogni distribuzione $\pi$ stazionaria per la matrice $P$, abbiamo
+    $$\mu^{(n)}\xrightarrow{TV}\pi$$
+
+\end{theorem}
+Per dimostrare il teorema utilizzeremo un metodo probabilistico chiamato \textbf{coupling}, il quale consiste nel realizzare la simulazione di due $MC$, e analizzare quando quest'ultime si incrociano (si trovano nello stesso stato).
+\begin{proof}[\textbf{Dimostrazione}]
+
+\end{proof}
 \end{document}
