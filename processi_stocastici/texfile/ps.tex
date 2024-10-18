@@ -492,7 +492,7 @@ ed una per l'aggiornamento:
     \item[-] \textit{inizializzazione} : $\psi : I\to \mathcal{S}$, da $[0,1]$ scelgo uno stato da cui iniziare.
           Per ogni $s\in\mathcal{S}$, la lunghezza di un intervallo in cui $\psi(x)=s$ deve essere $\mu^{(0)}(s) =\mathbb{P}(X_0 = s) $.
           Definiamo $\mu^{(0)}(s)$ come la misura dell'intervallo che rappresenta lo stato $s$ al passo $0$, ovvero
-          $$ \mathbb{P}(X_0 = s) = \mathbb{P}(\psi(U_0)=s) = \int_0^1 \chi_{\{\psi(x)=s\}} dx$$
+          $$ \mu^{(0)} = \mathbb{P}(X_0 = s) = \mathbb{P}(\psi(U_0)=s) = \int_0^1 \chi_{\{\psi(x)=s\}} dx$$
           dove $\chi_{\{\psi(x) = s\}}$ è la funzione caratteristica sull'insieme dei punti  $x\in [0,1]$, tali che $\psi(x) = s$
           $$\chi_{\{\psi(x) = s\}} =\left\{ \begin{array}{cl} 1 \quad \psi(x) = s\\ 0 \quad \psi(x) \neq s\end{array} \right.$$
           Diamo ora una semplice costruzione della funzione $\psi$ costante a tratti:
@@ -609,6 +609,73 @@ obbligatoriamente introdurre una definizione di distanza.
 \end{theorem}
 Per dimostrare il teorema utilizzeremo un metodo probabilistico chiamato \textbf{coupling}, il quale consiste nel realizzare la simulazione di due $MC$, e analizzare quando quest'ultime si incrociano (si trovano nello stesso stato).
 \begin{proof}[\textbf{Dimostrazione}]
+    Per studiare il comportamento della distribuzione $\mu^{(n)}$, possiamo avanzare l'ipotesi che sia generata da una simulazione
+    di catena di Markov, inizializzata e aggiornata come indicato in \textbf{(1.3)}. Quindi la catena $X_0,X_1\dots$ sarà generata da
+    \begin{align*}
+        X_0 & = \psi_{\mu^{(0)}}(U_0) \\
+        X_1 & = \phi(X_0,U_1)         \\
+        X_2 & = \phi(X_1,U_2)         \\
+            & \vdots
+    \end{align*}
+    La $\psi_{\mu^{(0)}}$ è  una funzione di inizalizzazione per $\mu^{(0)}$, $\phi$ è la funzione di aggiornamento per la matrice $P$, e come in precedenza
+    $U_0,U_1\dots$, sono una sequenza di variabili aleatorie uniformi generate.
+    In modo analogo definiamo una seconda catena di Markov, $(X'_0,X_1',\dots)$, con funzione di inizializzazione $\psi_{\pi}$ per la distribuzione $\pi$ e $(U_0',U_1'\dots)$ un'altra sequenza di variabili aleatorie uniformi.
+    Dato che $\pi$ è una distribuzione stazionaria, avremo che $X_n'$ avrà distribuzione $\pi$ per ogni $n$. Otteniamo quindi:
+    \begin{align*}
+        X_0' & = \psi_{\pi}(U_0') \\
+        X_1' & = \phi(X_0',U_1')  \\
+        X_2' & = \phi(X_1',U_2')  \\
+             & \vdots
+    \end{align*}
+    Ovviamente le due successioni ($X_0,X_1\dots)$ e $(X_0',X_1',\dots)$ sono indipendenti, come le loro rispettive successioni di variabili aleatorie uniformi. Vogliamo dimostrare che per un certo $n$ le due catene si incontrano con probabilità $1$, ovvero $\mathbb{P}(X_n = X_n') = 1$.
+    Definiamo $T$ come il primo tempo di incontro tra le due catene, ovvero $T  =\min\{n:X_n = X_n'\}$. Come dimostrato nel corollario \textbf{(1.18)}, dato che la catena è ergodica, possiamo trovare un intero $M<\infty$, tale che
+    $$P_{ij}^{(M)}>0\qquad \text{per ogni }i,j\in\{1,\dots k\}.$$
+    Sia
+    $$\alpha = \min\{P_{ij}^{(M)}| i\in\{1,\dots k\},$$
+    otteniamo che
+    \begin{align*}
+        \mathbb{P}(T\le M) & \ge \mathbb{P}(X_M = X_M')  \ge\mathbb{P}(X_M = s_1, X_M' = s_1)                                                                                                \\
+                           & \overset{indip.}{=} \mathbb{P}(X_M = s_1) \mathbb{P}(X_M'=s_1)                                                                                                  \\
+                           & =\left(\sum_{i=1}^k \mathbb{P}(X_0 = s_i, X_M = s_1)\right)\left(\sum_{i=1}^k \mathbb{P}(X_0' = s_i, X_M' = s_1)\right)                                         \\
+                           & =\left(\sum_{i=1}^k \mathbb{P}(X_0 = s_i)\mathbb{P}(X_M =s_1|X_0 = s_i)\right)\left(\sum_{i=1}^k \mathbb{P}(X_0' = s_i)\mathbb{P}(X_M' = s_1| X_0' =s_i)\right) \\
+                           & \ge \left(\alpha\sum_{i= 1}^k\mathbb{P}(X_0 =s_i)\right)\left(\alpha\sum_{i= 1}^k\mathbb{P}(X_0'=s_i)\right) = \alpha^2
+    \end{align*}
+    passando al complemento
+    $$\mathbb{P}(T>M) \le 1-\alpha^2.$$
+    Quindi dato che la probabilità di incontro entro $M$ passi in $s_1$ è maggiore di $\alpha^2$, allora  $\mathbb{P}(X_{2M} \neq X_{2M}' | T>M)\le 1-\alpha^2$.
+    Ripetiamo il calcolo ad esempio nel caso in cui il tempo di incontro supera $2M$:
+    \begin{align*}
+        \mathbb{P}(T>2M) & = \mathbb{P}(T>M)\mathbb{P}(T>2M| T>M)                              \\
+                         & \le(1-\alpha^2)\mathbb{P}(T>2M|T>M)                                 \\
+                         & \le(1-\alpha^2)\mathbb{P}(X_{2M}\neq X_{2M}'|T>M)\le (1-\alpha^2)^2 \\
+    \end{align*}
+    Reiterando l'argomento per $\ell$ volte otteniamo che:
+    $$\mathbb{P}(T>\ell M)\le (1-\alpha^2)^{\ell}$$
+    dove se $\ell\to\infty$, allora $(1-\alpha^2)^{\ell}\to 0$, abbiamo quindi dimostrato che la probabilità che  le due catene si incontrino è $1$.
+    Definiamo ora una nuova catena di Markov $(X_0'',X_1'',\dots)$ in modo simile alle due precedenti, dichiarando lo stato di partenza $X_0'' = X_0$ e per ogni $n$
+    $$X_{n-1}'' =\left\{\begin{array}{cl}
+            \phi(X_n'',U_{n+1})\quad se\;X_n'' \neq X_n' \\
+            \phi(X_n'',U_{n+1}')\quad se\;X_n'' = X_n'
+        \end{array}\right.$$
+    in parole, la catena $(X_0'',X_1'',\dots)$ evolve come la catena $(X_0,X_1,\dots)$ fino a che non si incontra con $X_i'$, successivamente
+    continua l'evoluzione come $(X_0',X_1'\dots)$. Dato che abbiamo fatto iniziare questa nuova catena da $X_0$, allora la distribuzione di $X_0''$ è $\mu^{(0)}$, quindi per ogni $n$ la distribuzione di $X_n''$ ha distribuzione $\mu^{(n)}$.
+    Ora per ogni $i\in\{1,\dots k\}$ otteniamo che
+    \begin{align*}
+        \mu^{(n)}_i - \pi_i & = \mathbb{P}(X_n'' = s_i) -\mathbb{P}(X_n' = si_i)          \\
+                            & \le \mathbb{P}(X_n'' = s_i, X_n' \neq s_i)   \qquad (\star) \\
+                            & \le \mathbb{P}(X_n'' \neq X_n')  = \mathbb{P}(T>n)
+    \end{align*}
+    $(\star)\mathbb{P}(A)-\mathbb{P}(B)\le \mathbb{P}(A\cap B^{\complement}) = \mathbb{P}(A)-\mathbb{P}(A\cap B) \implies \mathbb{P}(B)\ge \mathbb{P}(A\cap B)$\\
+
+    In modo analogo verifichiamo che $\pi_i - \mu^{(n)}_i \le \mathbb{P}(T>n)$, in entrambi i casi se $n\to\infty$, allora $\mathbb{P}(T>n)\to 0$, segue che
+    $$\lim_{n\to \infty}|\mu_i^{(n)}-\pi_i| = 0$$
+    implicando a sua volta che $\mu^{(n)}\xrightarrow{TV}\pi$ ovvero:
+    $$\lim_{n\to\infty}d_{TV}(\mu^{(n)},\pi) = \lim_{n\to\infty}\left(\frac{1}{2}\sum_{i = 1}^k |\mu_i^{(n)}-\pi_i|\right)  = 0$$
+\end{proof}
+\begin{theorem}[Unicità della distribuzione stazionaria]
+    Ogni catena di Markov aperiodica e irriducibile ha esattamente una distribuzione stazionaria.
+\end{theorem}
+\begin{proof}[Dimostrazione] Segue dal teorema di $convergenza$.
 
 \end{proof}
 \end{document}

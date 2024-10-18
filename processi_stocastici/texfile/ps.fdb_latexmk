@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1729186568.96027 "/Users/francesco/Università/III/Appunti/processi_stocastici/texfile/ps.tex" "ps.pdf" "ps" 1729186569.52554 0
+["pdflatex"] 1729265685.24484 "/Users/francesco/Università/III/Appunti/processi_stocastici/texfile/ps.tex" "ps.pdf" "ps" 1729265685.87929 0
   "../img/Stemma_sapienza.png" 1728116366.45362 64977 e0e395105162fd368a21818c3c4f6060 ""
-  "/Users/francesco/Università/III/Appunti/processi_stocastici/texfile/ps.tex" 1729186568.71329 46627 e2e801469c6746fdefb00b2e38f23ace ""
+  "/Users/francesco/Università/III/Appunti/processi_stocastici/texfile/ps.tex" 1729265685.07066 52285 a25361d8beb7e25508c6ffae5db1ec14 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1246382020 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1246382020 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -39,6 +39,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1248133631 32362 179c33bbf43f19adbb3825bb4e36e57a ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1248133631 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb" 1248133631 32915 7bf7720c61a5b3a7ff25b0964421c9b6 ""
@@ -47,6 +48,7 @@
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy7.pfb" 1248133631 30068 eae4ba75635647d82fb0b7d7bccc4748 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb" 1248133631 39386 0bb525d495ceab21fe797301a586e0d7 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb" 1336858727 21098 d4aee7c0aac232caac5688b586b9363c ""
+  "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb" 1248133631 33366 60462f3d16c3d0f024f1f856e64b09cd ""
   "/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1248133631 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
   "/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty" 1644112042 7237 bdd120a32c8fdb4b433cf9ca2e7cd98a ""
@@ -144,9 +146,9 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1711832357.31658 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1711832289 8221425 03946263b5a4377d613b8c1ed7b5163b ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "ps.aux" 1729186569.47164 651 7fb7a6b61b3c2a00d0058f7e50c6ac07 "pdflatex"
-  "ps.tex" 1729186568.71329 46627 e2e801469c6746fdefb00b2e38f23ace ""
-  "ps.toc" 1729186569.47211 413 cc71278b22f3bf7ea283091953618d69 "pdflatex"
+  "ps.aux" 1729265685.81307 651 46998428495fb392a38da2fa298099be "pdflatex"
+  "ps.tex" 1729265685.07066 52285 a25361d8beb7e25508c6ffae5db1ec14 ""
+  "ps.toc" 1729265685.81339 413 cc71278b22f3bf7ea283091953618d69 "pdflatex"
   (generated)
   "ps.aux"
   "ps.log"
